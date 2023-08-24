@@ -1,8 +1,8 @@
-var formulario = document.querySelector("#form")
+var formulario = document.querySelector(".formulario"); //se corrige a referencia por clase
 
 formulario.onsubmit = function(e) {
 
-  e.prevent();
+  e.preventDefault(); // se agrega Default
   
   var n = formulario.elements[0]
   var e = formulario.elements[1]
@@ -30,12 +30,12 @@ if (nombre.length > 0
   }
 }
 
-var botonBorrar = document.createElement("button")
+/* var botonBorrar = document.createElement("button")
 botonBorrar.textContent = "Eliminar invitado"
 botonBorrar.id = "boton-borrar"
 var corteLinea = document.createElement("br")
 document.body.appendChild(corteLinea)
-document.body.appendChild(botonBorrar);
+document.body.appendChild(botonBorrar); */ //código duplicado
 
 function agregarInvitado(nombre, edad, nacionalidad) {
 
@@ -55,24 +55,17 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 var lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+elementoLista.classList.add("elemento-lista") // se corrige add por added
 lista.appendChild(elementoLista)
 
-var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
-var espacio = document.createElement("br")
-spanNombre.textContent = "Nombre: "
-inputNombre.value = nombre 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
+// se elimina sección duplicada
 
 function crearElemento(descripcion, valor) {
 var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
+var inputNombre = document.createElement("p") //se cambia a p para que no se pueda editar el elemento
 var espacio = document.createElement("br")
 spanNombre.textContent = descripcion + ": "
-inputNombre.value = valor 
+inputNombre.innerHTML = valor // se cambia a innerHTML
 elementoLista.appendChild(spanNombre)
 elementoLista.appendChild(inputNombre)
 elementoLista.appendChild(espacio)
@@ -91,7 +84,7 @@ elementoLista.appendChild(corteLinea)
 elementoLista.appendChild(botonBorrar);
 
  botonBorrar.onclick = function() {
-// this.parentNode.style.display = 'none';
+this.parentNode.style.display = 'block';
 botonBorrar.parentNode.remove()
   }
 }
